@@ -10,16 +10,18 @@ function App() {
 
   useEffect(() => {   
       const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
-      setPacientes(pacientesLS)
+      if(pacientesLS>pacientes){
+        setPacientes(pacientesLS)
+      }
+      
    
   }, []);
 
   useEffect(() => {
     const guardarEnLocalStorage = () => {
-      setTimeout(() => {
         //console.log("Guardando pacientes en Local Storage después de 5 segundos:", pacientes);
         localStorage.setItem('pacientes', JSON.stringify(pacientes));
-      }, 50); 
+   
     };
   
     guardarEnLocalStorage();
